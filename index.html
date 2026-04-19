@@ -7,13 +7,8 @@
   <style>
     *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
     :root {
-      --bg: #f5f5f0;
-      --card: #ffffff;
-      --border: rgba(0,0,0,0.1);
-      --border2: rgba(0,0,0,0.2);
-      --text: #1a1a18;
-      --muted: #6b6b65;
-      --hint: #9a9a94;
+      --bg: #f5f5f0; --card: #ffffff; --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
+      --text: #1a1a18; --muted: #6b6b65; --hint: #9a9a94;
       --blue-bg: #E6F1FB; --blue-fg: #0C447C; --blue-bd: #85B7EB;
       --green-bg: #EAF3DE; --green-fg: #27500A; --green-bd: #97C459;
       --pink-bg: #FBEAF0; --pink-fg: #72243E; --pink-bd: #ED93B1;
@@ -29,15 +24,10 @@
       }
     }
     html, body { height: 100%; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); }
-    #app { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; position: relative; }
-
-    /* Screens */
+    #app { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
     .screen { display: none; flex-direction: column; flex: 1; }
     .screen.active { display: flex; }
-
-    /* Welcome */
     .welcome-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 28px; padding: 40px 24px; }
-    .welcome-icon { font-size: 56px; line-height: 1; }
     .welcome-wrap h1 { font-size: 22px; font-weight: 600; text-align: center; }
     .welcome-wrap p { font-size: 14px; color: var(--muted); text-align: center; max-width: 280px; line-height: 1.6; }
     .user-btns { display: flex; gap: 20px; }
@@ -46,25 +36,17 @@
     .user-btn.M { background: var(--blue-bg); color: var(--blue-fg); border-color: var(--blue-bd); }
     .user-btn.J { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-bd); }
     .user-btn.L { background: var(--pink-bg); color: var(--pink-fg); border-color: var(--pink-bd); }
-
-    /* Topbar */
     .topbar { background: var(--card); border-bottom: 0.5px solid var(--border); padding: 14px 16px 10px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 20; }
     .topbar h1 { font-size: 17px; font-weight: 600; flex: 1; }
     .user-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; cursor: pointer; flex-shrink: 0; border: 1px solid transparent; }
     .user-badge.M { background: var(--blue-bg); color: var(--blue-fg); border-color: var(--blue-bd); }
     .user-badge.J { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-bd); }
     .user-badge.L { background: var(--pink-bg); color: var(--pink-fg); border-color: var(--pink-bd); }
-
-    /* Tab bar */
     .tab-bar { background: var(--card); border-top: 0.5px solid var(--border); display: flex; position: sticky; bottom: 0; z-index: 20; }
     .tab-btn { flex: 1; padding: 10px 4px 12px; font-size: 11px; color: var(--hint); background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; -webkit-tap-highlight-color: transparent; }
     .tab-btn.active { color: var(--blue-fg); }
     .tab-icon { font-size: 22px; line-height: 1; }
-
-    /* Content */
     .content { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
-
-    /* Task cards */
     .task-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 9px; }
     .task-top { display: flex; align-items: flex-start; gap: 10px; }
     .task-text { font-size: 15px; line-height: 1.45; flex: 1; }
@@ -76,20 +58,14 @@
     .badge.L { background: var(--pink-bg); color: var(--pink-fg); }
     .done-btn { background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 7px 13px; font-size: 13px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
     .done-btn:active { background: var(--bg); }
-
-    /* Completed cards */
     .comp-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 6px; }
     .comp-title { font-size: 15px; color: var(--muted); }
     .comp-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .comp-date { font-size: 12px; color: var(--hint); }
-
-    /* FAB */
-    .fab { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-bg); border: 1px solid var(--blue-bd); color: var(--blue-fg); font-size: 30px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; position: fixed; bottom: 80px; right: calc(50% - 240px + 16px); box-shadow: 0 2px 12px rgba(0,0,0,0.12); -webkit-tap-highlight-color: transparent; z-index: 15; transition: transform .15s; }
+    .fab { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-bg); border: 1px solid var(--blue-bd); color: var(--blue-fg); font-size: 30px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; position: fixed; bottom: 80px; right: calc(50% - 240px + 16px); -webkit-tap-highlight-color: transparent; z-index: 15; transition: transform .15s; }
     @media (max-width: 480px) { .fab { right: 16px; } }
     .fab:active { transform: scale(0.93); }
     .fab.hidden { display: none; }
-
-    /* Modals */
     .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: flex-end; justify-content: center; }
     .overlay.open { display: flex; }
     .sheet { background: var(--card); border-radius: 20px 20px 0 0; width: 100%; max-width: 480px; padding: 20px 20px 36px; display: flex; flex-direction: column; gap: 14px; }
@@ -100,117 +76,95 @@
     .btn-main { background: var(--blue-bg); border: none; border-radius: var(--radius-sm); padding: 13px; font-size: 15px; font-weight: 600; color: var(--blue-fg); cursor: pointer; }
     .btn-sec { background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 13px; font-size: 15px; color: var(--muted); cursor: pointer; }
     .conf-text { font-size: 15px; color: var(--muted); line-height: 1.5; }
-
-    /* Empty / loading */
     .empty { text-align: center; padding: 48px 20px; color: var(--hint); font-size: 14px; }
     .loading { text-align: center; padding: 48px 20px; color: var(--hint); font-size: 14px; }
     .section-label { font-size: 12px; color: var(--hint); padding: 2px 0 4px; }
-
-    /* Spinner */
     .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border2); border-top-color: var(--blue-fg); border-radius: 50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
-
-    /* Error banner */
     .error-banner { background: #FCEBEB; color: #791F1F; border: 0.5px solid #F09595; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; margin: 0 12px; display: none; }
-    .error-banner.show { display: block; }
   </style>
 </head>
 <body>
 <div id="app">
-
-  <!-- WELCOME -->
   <div id="screen-welcome" class="screen active">
     <div class="welcome-wrap">
-      <div class="welcome-icon">🏠</div>
+      <div style="font-size:56px;line-height:1">🏠</div>
       <h1>Benvingut/da</h1>
       <p>Tria el teu usuari. L'app el recordarà en aquest dispositiu.</p>
       <div class="user-btns">
-        <button class="user-btn M" onclick="pickUser('M')">M</button>
-        <button class="user-btn J" onclick="pickUser('J')">J</button>
-        <button class="user-btn L" onclick="pickUser('L')">L</button>
+        <button class="user-btn M" data-user="M">M</button>
+        <button class="user-btn J" data-user="J">J</button>
+        <button class="user-btn L" data-user="L">L</button>
       </div>
     </div>
   </div>
 
-  <!-- MAIN -->
   <div id="screen-main" class="screen">
     <div class="topbar">
       <h1 id="topbar-title">Tasques pendents</h1>
-      <div id="user-badge" class="user-badge" onclick="openChangeUser()"></div>
+      <div id="user-badge" class="user-badge"></div>
     </div>
-
-    <div id="error-banner" class="error-banner">Error de connexió. Comprova la teva xarxa.</div>
-
+    <div id="error-banner" class="error-banner"></div>
     <div id="tab-pending" class="content">
       <div id="pending-loading" class="loading"><span class="spinner"></span></div>
       <div id="pending-list"></div>
       <div id="pending-empty" class="empty" style="display:none">Res pendent! Tot en ordre. 🎉</div>
     </div>
-
     <div id="tab-done" class="content" style="display:none">
       <p class="section-label">Últims 30 dies</p>
-      <div id="done-loading" class="loading" style="display:none"><span class="spinner"></span></div>
       <div id="done-list"></div>
       <div id="done-empty" class="empty" style="display:none">Encara no hi ha tasques completades.</div>
     </div>
-
     <div class="tab-bar">
-      <button class="tab-btn active" id="tbtn-pending" onclick="switchTab('pending')">
+      <button class="tab-btn active" id="tbtn-pending" data-tab="pending">
         <span class="tab-icon">📋</span>Pendents
       </button>
-      <button class="tab-btn" id="tbtn-done" onclick="switchTab('done')">
+      <button class="tab-btn" id="tbtn-done" data-tab="done">
         <span class="tab-icon">✅</span>Registre
       </button>
     </div>
   </div>
-
 </div>
 
-<!-- FAB -->
-<button class="fab hidden" id="fab" onclick="openAdd()" aria-label="Afegir tasca">+</button>
+<button class="fab hidden" id="fab">+</button>
 
-<!-- MODAL: Nova tasca -->
-<div class="overlay" id="modal-add" onclick="bgClose(event,'modal-add')">
+<div class="overlay" id="modal-add">
   <div class="sheet">
     <h2>Nova tasca</h2>
     <textarea id="new-task-text" placeholder="Descriu la tasca…" maxlength="300"></textarea>
-    <button class="btn-main" onclick="addTask()">Afegir tasca</button>
-    <button class="btn-sec" onclick="closeModal('modal-add')">Cancel·lar</button>
+    <button class="btn-main" id="btn-add-confirm">Afegir tasca</button>
+    <button class="btn-sec" id="btn-add-cancel">Cancel·lar</button>
   </div>
 </div>
 
-<!-- MODAL: Confirmar completada -->
-<div class="overlay" id="modal-confirm" onclick="bgClose(event,'modal-confirm')">
+<div class="overlay" id="modal-confirm">
   <div class="sheet">
     <h2>Marcar com a feta</h2>
     <p class="conf-text" id="confirm-text"></p>
-    <button class="btn-main" onclick="confirmDone()">Sí, ja ho he fet ✓</button>
-    <button class="btn-sec" onclick="closeModal('modal-confirm')">Cancel·lar</button>
+    <button class="btn-main" id="btn-done-confirm">Sí, ja ho he fet ✓</button>
+    <button class="btn-sec" id="btn-done-cancel">Cancel·lar</button>
   </div>
 </div>
 
-<!-- MODAL: Canvi usuari -->
-<div class="overlay" id="modal-user" onclick="bgClose(event,'modal-user')">
+<div class="overlay" id="modal-user">
   <div class="sheet" style="align-items:center">
     <h2>Canvia d'usuari</h2>
     <div class="sheet-user-btns">
-      <button class="user-btn M" onclick="pickUser('M',true)">M</button>
-      <button class="user-btn J" onclick="pickUser('J',true)">J</button>
-      <button class="user-btn L" onclick="pickUser('L',true)">L</button>
+      <button class="user-btn M" data-user="M" data-change="true">M</button>
+      <button class="user-btn J" data-user="J" data-change="true">J</button>
+      <button class="user-btn L" data-user="L" data-change="true">L</button>
     </div>
-    <button class="btn-sec" style="width:100%" onclick="closeModal('modal-user')">Cancel·lar</button>
+    <button class="btn-sec" style="width:100%" id="btn-user-cancel">Cancel·lar</button>
   </div>
 </div>
 
-<!-- Firebase SDK (modular v10) -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
   getFirestore, collection, addDoc, updateDoc, doc,
-  query, orderBy, onSnapshot, serverTimestamp, where, Timestamp
+  query, orderBy, onSnapshot, serverTimestamp, where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
-// ── CONFIG ── (substituta per la teva config de Firebase)
 const firebaseConfig = {
   apiKey: "AIzaSyD82mRzWZ0szL8Un8s4vnBNXUK_WVCDUDI",
   authDomain: "casa-tasques.firebaseapp.com",
@@ -222,16 +176,14 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
-
-const TASK_COL = "tasques";
+const COL = "tasques";
 const USER_KEY = "casa_user_v1";
 
-let currentUser = null;
-let confirmId   = null;
+let currentUser  = null;
+let confirmId    = null;
 let unsubPending = null;
 let unsubDone    = null;
 
-// ── UTILS ──
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 function fmtDateTime(ts){
@@ -247,27 +199,18 @@ function fmtDate(ts){
 }
 
 function badge(u, label){
-  return `<span class="badge ${u}">${esc(label||u)}</span>`;
+  return `<span class="badge ${esc(u)}">${esc(label||u)}</span>`;
 }
 
 function showError(msg){
   const b = document.getElementById("error-banner");
   b.textContent = msg;
-  b.classList.add("show");
-  setTimeout(()=>b.classList.remove("show"), 5000);
+  b.style.display = "block";
+  setTimeout(()=>{ b.style.display="none"; }, 7000);
 }
 
-// ── USER ──
-window.pickUser = function(u, fromModal=false){
-  currentUser = u;
-  localStorage.setItem(USER_KEY, u);
-  updateBadge();
-  if(fromModal){ closeModal("modal-user"); return; }
-  document.getElementById("screen-welcome").classList.remove("active");
-  document.getElementById("screen-main").classList.add("active");
-  document.getElementById("fab").classList.remove("hidden");
-  subscribeAll();
-};
+function openModal(id) { document.getElementById(id).classList.add("open"); }
+function closeModal(id){ document.getElementById(id).classList.remove("open"); }
 
 function updateBadge(){
   const b = document.getElementById("user-badge");
@@ -275,45 +218,55 @@ function updateBadge(){
   b.className = "user-badge " + currentUser;
 }
 
-window.openChangeUser = ()=> openModal("modal-user");
+function setUser(u, change=false){
+  currentUser = u;
+  localStorage.setItem(USER_KEY, u);
+  updateBadge();
+  if(change){ closeModal("modal-user"); return; }
+  document.getElementById("screen-welcome").classList.remove("active");
+  document.getElementById("screen-main").classList.add("active");
+  document.getElementById("fab").classList.remove("hidden");
+  subscribeAll();
+}
 
-// ── SUBSCRIPTIONS ──
 function subscribeAll(){
-  subscribePending();
-  subscribeDone();
-}
-
-function subscribePending(){
   if(unsubPending) unsubPending();
-  document.getElementById("pending-loading").style.display = "block";
-  const q = query(collection(db, TASK_COL),
-                  where("status","==","pending"),
-                  orderBy("createdAt","asc"));
-  unsubPending = onSnapshot(q, snap=>{
+  if(unsubDone)    unsubDone();
+
+  const qPending = query(
+    collection(db, COL),
+    where("status","==","pending"),
+    orderBy("createdAt","asc")
+  );
+  unsubPending = onSnapshot(qPending, snap=>{
     document.getElementById("pending-loading").style.display = "none";
-    const tasks = snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderPending(tasks);
-  }, err=>{ showError("Error carregant tasques: "+err.message); });
+    renderPending(snap.docs.map(d=>({id:d.id,...d.data()})));
+  }, err=>showError("Error carregant tasques: "+err.message));
+
+  const qDone = query(
+    collection(db, COL),
+    where("status","==","done"),
+    orderBy("completedAt","desc")
+  );
+  unsubDone = onSnapshot(qDone, snap=>{
+    const cutoff = Date.now() - 30*24*60*60*1000;
+    const tasks = snap.docs
+      .map(d=>({id:d.id,...d.data()}))
+      .filter(t => t.completedAt && t.completedAt.toMillis() >= cutoff);
+    renderDone(tasks);
+  }, err=>showError("Error carregant registre: "+err.message));
 }
 
-function subscribeDone(){
-  if(unsubDone) unsubDone();
-  const q = query(collection(db, TASK_COL),
-                  where("status","==","done"),
-                  orderBy("completedAt","desc"));
-}
-
-// ── RENDER ──
 function renderPending(tasks){
   const list  = document.getElementById("pending-list");
   const empty = document.getElementById("pending-empty");
   if(!tasks.length){ list.innerHTML=""; empty.style.display="block"; return; }
-  empty.style.display="none";
+  empty.style.display = "none";
   list.innerHTML = tasks.map(t=>`
     <div class="task-card">
       <div class="task-top">
         <span class="task-text">${esc(t.text)}</span>
-        <button class="done-btn" onclick="askDone('${t.id}','${esc(t.text).replace(/'/g,"\\'")}')">Fet ✓</button>
+        <button class="done-btn" data-id="${esc(t.id)}">Fet ✓</button>
       </div>
       <div class="task-meta">
         ${badge(t.creator)}
@@ -325,10 +278,8 @@ function renderPending(tasks){
 function renderDone(tasks){
   const list  = document.getElementById("done-list");
   const empty = document.getElementById("done-empty");
-  const cutoff = Date.now() - 30*24*60*60*1000;
-  tasks = tasks.filter(t => t.completedAt && t.completedAt.toDate().getTime() >= cutoff);
   if(!tasks.length){ list.innerHTML=""; empty.style.display="block"; return; }
-  empty.style.display="none";
+  empty.style.display = "none";
   list.innerHTML = tasks.map(t=>`
     <div class="comp-card">
       <div class="comp-title">${esc(t.text)}</div>
@@ -340,59 +291,75 @@ function renderDone(tasks){
     </div>`).join("");
 }
 
-// ── ADD TASK ──
-window.openAdd  = ()=>{ document.getElementById("new-task-text").value=""; openModal("modal-add"); setTimeout(()=>document.getElementById("new-task-text").focus(),200); };
-
-window.addTask = async function(){
+async function addTask(){
   const txt = document.getElementById("new-task-text").value.trim();
   if(!txt) return;
   closeModal("modal-add");
   try {
-    await addDoc(collection(db, TASK_COL), {
-      text: txt,
-      creator: currentUser,
-      status: "pending",
+    await addDoc(collection(db, COL), {
+      text:      txt,
+      creator:   currentUser,
+      status:    "pending",
       createdAt: serverTimestamp()
     });
   } catch(e){ showError("Error afegint la tasca: "+e.message); }
-};
+}
 
-// ── COMPLETE TASK ──
-window.askDone = function(id, text){
-  confirmId = id;
-  document.getElementById("confirm-text").textContent = text;
-  openModal("modal-confirm");
-};
-
-window.confirmDone = async function(){
+async function completeDone(){
   if(!confirmId) return;
+  const id = confirmId;
+  confirmId = null;
   closeModal("modal-confirm");
   try {
-    await updateDoc(doc(db, TASK_COL, confirmId), {
-      status: "done",
+    await updateDoc(doc(db, COL, id), {
+      status:      "done",
       completedBy: currentUser,
       completedAt: serverTimestamp()
     });
   } catch(e){ showError("Error completant la tasca: "+e.message); }
-  confirmId = null;
-};
+}
 
-// ── TABS ──
-window.switchTab = function(tab){
-  document.getElementById("tab-pending").style.display = tab==="pending"?"flex":"none";
-  document.getElementById("tab-done").style.display    = tab==="done"?"flex":"none";
+function switchTab(tab){
+  document.getElementById("tab-pending").style.display = tab==="pending" ? "flex" : "none";
+  document.getElementById("tab-done").style.display    = tab==="done"    ? "flex" : "none";
   document.getElementById("tbtn-pending").classList.toggle("active", tab==="pending");
   document.getElementById("tbtn-done").classList.toggle("active",    tab==="done");
-  document.getElementById("topbar-title").textContent  = tab==="pending"?"Tasques pendents":"Registre de tasques";
+  document.getElementById("topbar-title").textContent  = tab==="pending" ? "Tasques pendents" : "Registre de tasques";
   document.getElementById("fab").classList.toggle("hidden", tab!=="pending");
-};
+}
 
-// ── MODALS ──
-window.openModal  = id=> document.getElementById(id).classList.add("open");
-window.closeModal = id=> document.getElementById(id).classList.remove("open");
-window.bgClose    = (e,id)=>{ if(e.target===document.getElementById(id)) closeModal(id); };
+document.addEventListener("click", e => {
+  const userBtn = e.target.closest("[data-user]");
+  if(userBtn){ setUser(userBtn.dataset.user, userBtn.dataset.change === "true"); return; }
 
-// ── INIT ──
+  const doneBtn = e.target.closest(".done-btn");
+  if(doneBtn){
+    confirmId = doneBtn.dataset.id;
+    document.getElementById("confirm-text").textContent =
+      doneBtn.closest(".task-card").querySelector(".task-text").textContent;
+    openModal("modal-confirm");
+    return;
+  }
+
+  const tabBtn = e.target.closest("[data-tab]");
+  if(tabBtn){ switchTab(tabBtn.dataset.tab); return; }
+
+  if(e.target.id === "fab"){
+    document.getElementById("new-task-text").value = "";
+    openModal("modal-add");
+    setTimeout(()=>document.getElementById("new-task-text").focus(), 200);
+    return;
+  }
+
+  if(e.target.id === "user-badge"){ openModal("modal-user"); return; }
+  if(e.target.id === "btn-add-confirm")  { addTask(); return; }
+  if(e.target.id === "btn-add-cancel")   { closeModal("modal-add"); return; }
+  if(e.target.id === "btn-done-confirm") { completeDone(); return; }
+  if(e.target.id === "btn-done-cancel")  { closeModal("modal-confirm"); return; }
+  if(e.target.id === "btn-user-cancel")  { closeModal("modal-user"); return; }
+  if(e.target.classList.contains("overlay")){ e.target.classList.remove("open"); return; }
+});
+
 (function init(){
   const saved = localStorage.getItem(USER_KEY);
   if(saved && ["M","J","L"].includes(saved)){
