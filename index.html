@@ -9,83 +9,138 @@
     :root {
       --bg: #f5f5f0; --card: #ffffff; --border: rgba(0,0,0,0.1); --border2: rgba(0,0,0,0.2);
       --text: #1a1a18; --muted: #6b6b65; --hint: #9a9a94;
-      --blue-bg: #E6F1FB; --blue-fg: #0C447C; --blue-bd: #85B7EB;
-      --green-bg: #EAF3DE; --green-fg: #27500A; --green-bd: #97C459;
-      --pink-bg: #FBEAF0; --pink-fg: #72243E; --pink-bd: #ED93B1;
+      --M-bg: #E6F1FB; --M-fg: #0C447C; --M-bd: #85B7EB;
+      --J-bg: #EAF3DE; --J-fg: #27500A; --J-bd: #97C459;
+      --L-bg: #FBEAF0; --L-fg: #72243E; --L-bd: #ED93B1;
       --radius: 12px; --radius-sm: 8px;
     }
     @media (prefers-color-scheme: dark) {
       :root {
         --bg: #1a1a18; --card: #252523; --border: rgba(255,255,255,0.1); --border2: rgba(255,255,255,0.22);
         --text: #e8e8e0; --muted: #9a9a94; --hint: #6b6b65;
-        --blue-bg: #0C447C; --blue-fg: #B5D4F4; --blue-bd: #185FA5;
-        --green-bg: #27500A; --green-fg: #C0DD97; --green-bd: #3B6D11;
-        --pink-bg: #72243E; --pink-fg: #F4C0D1; --pink-bd: #993556;
+        --M-bg: #0C447C; --M-fg: #B5D4F4; --M-bd: #185FA5;
+        --J-bg: #27500A; --J-fg: #C0DD97; --J-bd: #3B6D11;
+        --L-bg: #72243E; --L-fg: #F4C0D1; --L-bd: #993556;
       }
     }
     html, body { height: 100%; background: var(--bg); font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; color: var(--text); }
     #app { max-width: 480px; margin: 0 auto; min-height: 100vh; display: flex; flex-direction: column; }
+
     .screen { display: none; flex-direction: column; flex: 1; }
     .screen.active { display: flex; }
+
+    /* Welcome */
     .welcome-wrap { display: flex; flex-direction: column; align-items: center; justify-content: center; flex: 1; gap: 28px; padding: 40px 24px; }
     .welcome-wrap h1 { font-size: 22px; font-weight: 600; text-align: center; }
     .welcome-wrap p { font-size: 14px; color: var(--muted); text-align: center; max-width: 280px; line-height: 1.6; }
     .user-btns { display: flex; gap: 20px; }
     .user-btn { width: 82px; height: 82px; border-radius: 50%; border: 1px solid var(--border2); background: var(--card); font-size: 30px; font-weight: 600; cursor: pointer; display: flex; align-items: center; justify-content: center; transition: transform .15s; -webkit-tap-highlight-color: transparent; }
     .user-btn:active { transform: scale(0.93); }
-    .user-btn.M { background: var(--blue-bg); color: var(--blue-fg); border-color: var(--blue-bd); }
-    .user-btn.J { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-bd); }
-    .user-btn.L { background: var(--pink-bg); color: var(--pink-fg); border-color: var(--pink-bd); }
+    .user-btn.M { background: var(--M-bg); color: var(--M-fg); border-color: var(--M-bd); }
+    .user-btn.J { background: var(--J-bg); color: var(--J-fg); border-color: var(--J-bd); }
+    .user-btn.L { background: var(--L-bg); color: var(--L-fg); border-color: var(--L-bd); }
+
+    /* Topbar */
     .topbar { background: var(--card); border-bottom: 0.5px solid var(--border); padding: 14px 16px 10px; display: flex; align-items: center; gap: 10px; position: sticky; top: 0; z-index: 20; }
     .topbar h1 { font-size: 17px; font-weight: 600; flex: 1; }
     .user-badge { width: 36px; height: 36px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-weight: 600; font-size: 16px; cursor: pointer; flex-shrink: 0; border: 1px solid transparent; }
-    .user-badge.M { background: var(--blue-bg); color: var(--blue-fg); border-color: var(--blue-bd); }
-    .user-badge.J { background: var(--green-bg); color: var(--green-fg); border-color: var(--green-bd); }
-    .user-badge.L { background: var(--pink-bg); color: var(--pink-fg); border-color: var(--pink-bd); }
+    .user-badge.M { background: var(--M-bg); color: var(--M-fg); border-color: var(--M-bd); }
+    .user-badge.J { background: var(--J-bg); color: var(--J-fg); border-color: var(--J-bd); }
+    .user-badge.L { background: var(--L-bg); color: var(--L-fg); border-color: var(--L-bd); }
+
+    /* Tab bar */
     .tab-bar { background: var(--card); border-top: 0.5px solid var(--border); display: flex; position: sticky; bottom: 0; z-index: 20; }
-    .tab-btn { flex: 1; padding: 10px 4px 12px; font-size: 11px; color: var(--hint); background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; -webkit-tap-highlight-color: transparent; }
-    .tab-btn.active { color: var(--blue-fg); }
-    .tab-icon { font-size: 22px; line-height: 1; }
+    .tab-btn { flex: 1; padding: 10px 4px 12px; font-size: 10px; color: var(--hint); background: none; border: none; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; -webkit-tap-highlight-color: transparent; }
+    .tab-btn.active { color: var(--M-fg); }
+    .tab-icon { font-size: 20px; line-height: 1; }
+
+    /* Content */
     .content { flex: 1; padding: 12px; display: flex; flex-direction: column; gap: 8px; overflow-y: auto; -webkit-overflow-scrolling: touch; }
+
+    /* Badges */
+    .badge { font-size: 11px; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
+    .badge.M { background: var(--M-bg); color: var(--M-fg); }
+    .badge.J { background: var(--J-bg); color: var(--J-fg); }
+    .badge.L { background: var(--L-bg); color: var(--L-fg); }
+
+    /* Task cards */
     .task-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 9px; }
     .task-top { display: flex; align-items: flex-start; gap: 10px; }
     .task-text { font-size: 15px; line-height: 1.45; flex: 1; }
     .task-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .task-date { font-size: 12px; color: var(--hint); }
-    .badge { font-size: 11px; padding: 2px 9px; border-radius: 999px; font-weight: 600; }
-    .badge.M { background: var(--blue-bg); color: var(--blue-fg); }
-    .badge.J { background: var(--green-bg); color: var(--green-fg); }
-    .badge.L { background: var(--pink-bg); color: var(--pink-fg); }
     .done-btn { background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 7px 13px; font-size: 13px; color: var(--muted); cursor: pointer; white-space: nowrap; flex-shrink: 0; -webkit-tap-highlight-color: transparent; }
     .done-btn:active { background: var(--bg); }
-    .comp-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 6px; }
-    .comp-title { font-size: 15px; color: var(--muted); }
+
+    /* Completed cards */
+    .comp-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 14px; display: flex; flex-direction: column; gap: 7px; position: relative; }
+    .comp-title { font-size: 15px; color: var(--muted); padding-right: 28px; }
     .comp-meta { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; }
     .comp-date { font-size: 12px; color: var(--hint); }
-    .fab { width: 52px; height: 52px; border-radius: 50%; background: var(--blue-bg); border: 1px solid var(--blue-bd); color: var(--blue-fg); font-size: 30px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; position: fixed; bottom: 80px; right: calc(50% - 240px + 16px); -webkit-tap-highlight-color: transparent; z-index: 15; transition: transform .15s; }
+    .comp-time { font-size: 12px; color: var(--hint); }
+    .delete-btn { position: absolute; top: 12px; right: 12px; width: 26px; height: 26px; border-radius: 50%; background: none; border: 0.5px solid var(--border2); color: var(--hint); font-size: 14px; cursor: pointer; display: flex; align-items: center; justify-content: center; -webkit-tap-highlight-color: transparent; }
+    .delete-btn:active { background: #FCEBEB; color: #791F1F; }
+
+    /* FAB */
+    .fab { width: 52px; height: 52px; border-radius: 50%; background: var(--M-bg); border: 1px solid var(--M-bd); color: var(--M-fg); font-size: 30px; font-weight: 300; cursor: pointer; display: flex; align-items: center; justify-content: center; position: fixed; bottom: 80px; right: calc(50% - 240px + 16px); z-index: 15; transition: transform .15s; -webkit-tap-highlight-color: transparent; }
     @media (max-width: 480px) { .fab { right: 16px; } }
     .fab:active { transform: scale(0.93); }
     .fab.hidden { display: none; }
+
+    /* Modals */
     .overlay { display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.45); z-index: 100; align-items: flex-end; justify-content: center; }
     .overlay.open { display: flex; }
     .sheet { background: var(--card); border-radius: 20px 20px 0 0; width: 100%; max-width: 480px; padding: 20px 20px 36px; display: flex; flex-direction: column; gap: 14px; }
     .sheet h2 { font-size: 17px; font-weight: 600; }
     .sheet-user-btns { display: flex; gap: 14px; justify-content: center; padding: 4px 0; }
     textarea { width: 100%; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 11px 13px; font-size: 15px; font-family: inherit; color: var(--text); background: var(--bg); resize: none; height: 96px; }
-    textarea:focus { outline: 2px solid var(--blue-bd); outline-offset: -1px; }
-    .btn-main { background: var(--blue-bg); border: none; border-radius: var(--radius-sm); padding: 13px; font-size: 15px; font-weight: 600; color: var(--blue-fg); cursor: pointer; }
+    textarea:focus { outline: 2px solid var(--M-bd); outline-offset: -1px; }
+    .btn-main { background: var(--M-bg); border: none; border-radius: var(--radius-sm); padding: 13px; font-size: 15px; font-weight: 600; color: var(--M-fg); cursor: pointer; }
+    .btn-danger { background: #FCEBEB; border: none; border-radius: var(--radius-sm); padding: 13px; font-size: 15px; font-weight: 600; color: #791F1F; cursor: pointer; }
     .btn-sec { background: none; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); padding: 13px; font-size: 15px; color: var(--muted); cursor: pointer; }
     .conf-text { font-size: 15px; color: var(--muted); line-height: 1.5; }
+
+    /* Time picker */
+    .time-picker { display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; padding: 4px 0; }
+    .time-opt { padding: 9px 14px; border-radius: var(--radius-sm); border: 0.5px solid var(--border2); background: var(--bg); font-size: 14px; color: var(--text); cursor: pointer; -webkit-tap-highlight-color: transparent; transition: all .1s; }
+    .time-opt.selected { background: var(--M-bg); color: var(--M-fg); border-color: var(--M-bd); font-weight: 600; }
+    .time-opt:active { transform: scale(0.96); }
+
+    /* Ranking */
+    .ranking-header { display: flex; align-items: center; justify-content: space-between; padding: 2px 0 6px; }
+    .ranking-header p { font-size: 12px; color: var(--hint); }
+    .period-toggle { display: flex; gap: 0; border: 0.5px solid var(--border2); border-radius: var(--radius-sm); overflow: hidden; }
+    .period-btn { padding: 5px 12px; font-size: 12px; background: none; border: none; color: var(--muted); cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .period-btn.active { background: var(--M-bg); color: var(--M-fg); font-weight: 600; }
+
+    .ranking-card { background: var(--card); border: 0.5px solid var(--border); border-radius: var(--radius); padding: 16px; display: flex; flex-direction: column; gap: 16px; }
+    .rank-row { display: flex; align-items: center; gap: 12px; }
+    .rank-pos { font-size: 20px; font-weight: 700; width: 28px; text-align: center; color: var(--hint); flex-shrink: 0; }
+    .rank-pos.gold   { color: #BA7517; }
+    .rank-pos.silver { color: #6b6b65; }
+    .rank-pos.bronze { color: #854F0B; }
+    .rank-info { flex: 1; display: flex; flex-direction: column; gap: 4px; }
+    .rank-name { font-size: 15px; font-weight: 600; }
+    .rank-bar-wrap { height: 6px; background: var(--bg); border-radius: 99px; overflow: hidden; }
+    .rank-bar { height: 100%; border-radius: 99px; transition: width .4s ease; }
+    .rank-bar.M { background: var(--M-bd); }
+    .rank-bar.J { background: var(--J-bd); }
+    .rank-bar.L { background: var(--L-bd); }
+    .rank-time { font-size: 13px; color: var(--muted); flex-shrink: 0; text-align: right; min-width: 60px; }
+
+    /* Misc */
     .empty { text-align: center; padding: 48px 20px; color: var(--hint); font-size: 14px; }
     .loading { text-align: center; padding: 48px 20px; color: var(--hint); font-size: 14px; }
-    .section-label { font-size: 12px; color: var(--hint); padding: 2px 0 4px; }
-    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border2); border-top-color: var(--blue-fg); border-radius: 50%; animation: spin .7s linear infinite; }
+    .section-label { font-size: 12px; color: var(--hint); padding: 2px 0 2px; }
+    .spinner { display: inline-block; width: 18px; height: 18px; border: 2px solid var(--border2); border-top-color: var(--M-fg); border-radius: 50%; animation: spin .7s linear infinite; }
     @keyframes spin { to { transform: rotate(360deg); } }
     .error-banner { background: #FCEBEB; color: #791F1F; border: 0.5px solid #F09595; border-radius: var(--radius-sm); padding: 10px 14px; font-size: 13px; margin: 0 12px; display: none; }
   </style>
 </head>
 <body>
 <div id="app">
+
+  <!-- WELCOME -->
   <div id="screen-welcome" class="screen active">
     <div class="welcome-wrap">
       <div style="font-size:56px;line-height:1">🏠</div>
@@ -99,22 +154,42 @@
     </div>
   </div>
 
+  <!-- MAIN -->
   <div id="screen-main" class="screen">
     <div class="topbar">
       <h1 id="topbar-title">Tasques pendents</h1>
       <div id="user-badge" class="user-badge"></div>
     </div>
     <div id="error-banner" class="error-banner"></div>
+
+    <!-- Tab: Pendents -->
     <div id="tab-pending" class="content">
       <div id="pending-loading" class="loading"><span class="spinner"></span></div>
       <div id="pending-list"></div>
       <div id="pending-empty" class="empty" style="display:none">Res pendent! Tot en ordre. 🎉</div>
     </div>
+
+    <!-- Tab: Registre -->
     <div id="tab-done" class="content" style="display:none">
       <p class="section-label">Últims 30 dies</p>
       <div id="done-list"></div>
       <div id="done-empty" class="empty" style="display:none">Encara no hi ha tasques completades.</div>
     </div>
+
+    <!-- Tab: Rànquing -->
+    <div id="tab-ranking" class="content" style="display:none">
+      <div class="ranking-header">
+        <p id="ranking-period-label">Tots els temps</p>
+        <div class="period-toggle">
+          <button class="period-btn" id="pbtn-all" data-period="all">Tot</button>
+          <button class="period-btn active" id="pbtn-30" data-period="30">30 dies</button>
+        </div>
+      </div>
+      <div class="ranking-card" id="ranking-card">
+        <div class="loading"><span class="spinner"></span></div>
+      </div>
+    </div>
+
     <div class="tab-bar">
       <button class="tab-btn active" id="tbtn-pending" data-tab="pending">
         <span class="tab-icon">📋</span>Pendents
@@ -122,12 +197,16 @@
       <button class="tab-btn" id="tbtn-done" data-tab="done">
         <span class="tab-icon">✅</span>Registre
       </button>
+      <button class="tab-btn" id="tbtn-ranking" data-tab="ranking">
+        <span class="tab-icon">🏆</span>Rànquing
+      </button>
     </div>
   </div>
 </div>
 
 <button class="fab hidden" id="fab">+</button>
 
+<!-- MODAL: Nova tasca -->
 <div class="overlay" id="modal-add">
   <div class="sheet">
     <h2>Nova tasca</h2>
@@ -137,15 +216,38 @@
   </div>
 </div>
 
-<div class="overlay" id="modal-confirm">
+<!-- MODAL: Temps dedicat -->
+<div class="overlay" id="modal-time">
   <div class="sheet">
-    <h2>Marcar com a feta</h2>
-    <p class="conf-text" id="confirm-text"></p>
-    <button class="btn-main" id="btn-done-confirm">Sí, ja ho he fet ✓</button>
-    <button class="btn-sec" id="btn-done-cancel">Cancel·lar</button>
+    <h2>Quant temps hi has dedicat?</h2>
+    <p class="conf-text" id="time-task-text"></p>
+    <div class="time-picker" id="time-picker">
+      <button class="time-opt" data-min="10">10 min</button>
+      <button class="time-opt" data-min="20">20 min</button>
+      <button class="time-opt" data-min="30">30 min</button>
+      <button class="time-opt" data-min="40">40 min</button>
+      <button class="time-opt" data-min="60">1 h</button>
+      <button class="time-opt" data-min="90">1 h 30</button>
+      <button class="time-opt" data-min="120">2 h</button>
+      <button class="time-opt" data-min="180">3 h</button>
+      <button class="time-opt" data-min="0">Sense temps</button>
+    </div>
+    <button class="btn-main" id="btn-time-confirm">Confirmar</button>
+    <button class="btn-sec" id="btn-time-cancel">Cancel·lar</button>
   </div>
 </div>
 
+<!-- MODAL: Confirmar eliminació -->
+<div class="overlay" id="modal-delete">
+  <div class="sheet">
+    <h2>Eliminar tasca</h2>
+    <p class="conf-text" id="delete-task-text"></p>
+    <button class="btn-danger" id="btn-delete-confirm">Sí, eliminar</button>
+    <button class="btn-sec" id="btn-delete-cancel">Cancel·lar</button>
+  </div>
+</div>
+
+<!-- MODAL: Canvi usuari -->
 <div class="overlay" id="modal-user">
   <div class="sheet" style="align-items:center">
     <h2>Canvia d'usuari</h2>
@@ -161,7 +263,7 @@
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
 import {
-  getFirestore, collection, addDoc, updateDoc, doc,
+  getFirestore, collection, addDoc, updateDoc, deleteDoc, doc,
   query, orderBy, onSnapshot, serverTimestamp, where
 } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
@@ -178,12 +280,18 @@ const app = initializeApp(firebaseConfig);
 const db  = getFirestore(app);
 const COL = "tasques";
 const USER_KEY = "casa_user_v1";
+const SUPERUSER = "M";
 
 let currentUser  = null;
 let confirmId    = null;
+let deleteId     = null;
+let selectedMin  = null;
+let rankPeriod   = "30";
+let allDoneTasks = [];
 let unsubPending = null;
 let unsubDone    = null;
 
+// ── UTILS ──
 function esc(s){ return String(s).replace(/&/g,"&amp;").replace(/</g,"&lt;").replace(/>/g,"&gt;"); }
 
 function fmtDateTime(ts){
@@ -197,71 +305,67 @@ function fmtDate(ts){
   const d = ts.toDate ? ts.toDate() : new Date(ts);
   return d.toLocaleDateString("ca-ES",{day:"2-digit",month:"2-digit",year:"numeric"});
 }
-
+function fmtMin(min){
+  if(!min || min === 0) return null;
+  if(min < 60) return min + " min";
+  const h = Math.floor(min/60), m = min%60;
+  return m ? h+"h "+m+"min" : h+"h";
+}
 function badge(u, label){
   return `<span class="badge ${esc(u)}">${esc(label||u)}</span>`;
 }
-
 function showError(msg){
   const b = document.getElementById("error-banner");
-  b.textContent = msg;
-  b.style.display = "block";
+  b.textContent = msg; b.style.display = "block";
   setTimeout(()=>{ b.style.display="none"; }, 7000);
 }
-
 function openModal(id) { document.getElementById(id).classList.add("open"); }
 function closeModal(id){ document.getElementById(id).classList.remove("open"); }
 
+// ── USER ──
 function updateBadge(){
   const b = document.getElementById("user-badge");
   b.textContent = currentUser;
   b.className = "user-badge " + currentUser;
 }
-
 function setUser(u, change=false){
   currentUser = u;
   localStorage.setItem(USER_KEY, u);
   updateBadge();
-  if(change){ closeModal("modal-user"); return; }
+  if(change){ closeModal("modal-user"); renderDone(allDoneTasks); return; }
   document.getElementById("screen-welcome").classList.remove("active");
   document.getElementById("screen-main").classList.add("active");
   document.getElementById("fab").classList.remove("hidden");
   subscribeAll();
 }
 
+// ── SUBSCRIPTIONS ──
 function subscribeAll(){
   if(unsubPending) unsubPending();
   if(unsubDone)    unsubDone();
 
-  const qPending = query(
-    collection(db, COL),
-    where("status","==","pending"),
-    orderBy("createdAt","asc")
-  );
+  const qPending = query(collection(db,COL), where("status","==","pending"), orderBy("createdAt","asc"));
   unsubPending = onSnapshot(qPending, snap=>{
     document.getElementById("pending-loading").style.display = "none";
     renderPending(snap.docs.map(d=>({id:d.id,...d.data()})));
   }, err=>showError("Error carregant tasques: "+err.message));
 
-  const qDone = query(
-    collection(db, COL),
-    where("status","==","done"),
-    orderBy("completedAt","desc")
-  );
+  const qDone = query(collection(db,COL), where("status","==","done"), orderBy("completedAt","desc"));
   unsubDone = onSnapshot(qDone, snap=>{
+    allDoneTasks = snap.docs.map(d=>({id:d.id,...d.data()}));
     const cutoff = Date.now() - 30*24*60*60*1000;
-    const tasks = snap.docs
-      .map(d=>({id:d.id,...d.data()}))
-      .filter(t => t.completedAt && t.completedAt.toMillis() >= cutoff);
-    renderDone(tasks);
+    const recent = allDoneTasks.filter(t => t.completedAt && t.completedAt.toMillis() >= cutoff);
+    renderDone(recent);
+    renderRanking();
   }, err=>showError("Error carregant registre: "+err.message));
 }
 
+// ── RENDER PENDING ──
 function renderPending(tasks){
   const list  = document.getElementById("pending-list");
   const empty = document.getElementById("pending-empty");
   if(!tasks.length){ list.innerHTML=""; empty.style.display="block"; return; }
-  empty.style.display = "none";
+  empty.style.display="none";
   list.innerHTML = tasks.map(t=>`
     <div class="task-card">
       <div class="task-top">
@@ -275,28 +379,74 @@ function renderPending(tasks){
     </div>`).join("");
 }
 
+// ── RENDER DONE ──
 function renderDone(tasks){
   const list  = document.getElementById("done-list");
   const empty = document.getElementById("done-empty");
   if(!tasks.length){ list.innerHTML=""; empty.style.display="block"; return; }
-  empty.style.display = "none";
-  list.innerHTML = tasks.map(t=>`
-    <div class="comp-card">
+  empty.style.display="none";
+  const isSuperuser = currentUser === SUPERUSER;
+  list.innerHTML = tasks.map(t=>{
+    const timeStr = fmtMin(t.minutes);
+    return `<div class="comp-card">
+      ${isSuperuser ? `<button class="delete-btn" data-delete-id="${esc(t.id)}" data-delete-text="${esc(t.text)}" title="Eliminar">✕</button>` : ""}
       <div class="comp-title">${esc(t.text)}</div>
       <div class="comp-meta">
         ${badge(t.completedBy, t.completedBy+" ho ha fet")}
         ${badge(t.creator, "Afegida per "+t.creator)}
+        ${timeStr ? `<span class="badge" style="background:var(--bg);border:0.5px solid var(--border2);color:var(--muted);">⏱ ${timeStr}</span>` : ""}
       </div>
       <span class="comp-date">Completada el ${fmtDate(t.completedAt)}</span>
-    </div>`).join("");
+    </div>`;
+  }).join("");
 }
 
+// ── RENDER RANKING ──
+function renderRanking(){
+  const card = document.getElementById("ranking-card");
+  const users = ["M","J","L"];
+  const cutoff = rankPeriod === "30" ? Date.now() - 30*24*60*60*1000 : 0;
+  document.getElementById("ranking-period-label").textContent =
+    rankPeriod === "30" ? "Últims 30 dies" : "Tots els temps";
+
+  const filtered = allDoneTasks.filter(t =>
+    !cutoff || (t.completedAt && t.completedAt.toMillis() >= cutoff)
+  );
+
+  const totals = {};
+  users.forEach(u => totals[u] = 0);
+  filtered.forEach(t => {
+    if(totals[t.completedBy] !== undefined) totals[t.completedBy] += (t.minutes || 0);
+  });
+
+  const sorted = users.sort((a,b) => totals[b] - totals[a]);
+  const maxTime = Math.max(...Object.values(totals), 1);
+  const medals = ["gold","silver","bronze"];
+  const nums   = ["1r","2n","3r"];
+
+  card.innerHTML = sorted.map((u,i)=>{
+    const pct = Math.round((totals[u]/maxTime)*100);
+    const timeStr = fmtMin(totals[u]) || "0 min";
+    return `<div class="rank-row">
+      <div class="rank-pos ${medals[i]}">${nums[i]}</div>
+      <div class="rank-info">
+        <div class="rank-name">${badge(u)} ${u}</div>
+        <div class="rank-bar-wrap">
+          <div class="rank-bar ${u}" style="width:${pct}%"></div>
+        </div>
+      </div>
+      <div class="rank-time">${timeStr}</div>
+    </div>`;
+  }).join("");
+}
+
+// ── ADD TASK ──
 async function addTask(){
   const txt = document.getElementById("new-task-text").value.trim();
   if(!txt) return;
   closeModal("modal-add");
   try {
-    await addDoc(collection(db, COL), {
+    await addDoc(collection(db,COL), {
       text:      txt,
       creator:   currentUser,
       status:    "pending",
@@ -305,61 +455,125 @@ async function addTask(){
   } catch(e){ showError("Error afegint la tasca: "+e.message); }
 }
 
+// ── COMPLETE TASK ──
+function askDone(id, text){
+  confirmId   = id;
+  selectedMin = null;
+  document.getElementById("time-task-text").textContent = text;
+  document.querySelectorAll(".time-opt").forEach(b=>b.classList.remove("selected"));
+  openModal("modal-time");
+}
+
 async function completeDone(){
   if(!confirmId) return;
-  const id = confirmId;
-  confirmId = null;
-  closeModal("modal-confirm");
+  const id  = confirmId;
+  const min = selectedMin;
+  confirmId = null; selectedMin = null;
+  closeModal("modal-time");
   try {
-    await updateDoc(doc(db, COL, id), {
+    await updateDoc(doc(db,COL,id), {
       status:      "done",
       completedBy: currentUser,
-      completedAt: serverTimestamp()
+      completedAt: serverTimestamp(),
+      minutes:     min || 0
     });
   } catch(e){ showError("Error completant la tasca: "+e.message); }
 }
 
-function switchTab(tab){
-  document.getElementById("tab-pending").style.display = tab==="pending" ? "flex" : "none";
-  document.getElementById("tab-done").style.display    = tab==="done"    ? "flex" : "none";
-  document.getElementById("tbtn-pending").classList.toggle("active", tab==="pending");
-  document.getElementById("tbtn-done").classList.toggle("active",    tab==="done");
-  document.getElementById("topbar-title").textContent  = tab==="pending" ? "Tasques pendents" : "Registre de tasques";
-  document.getElementById("fab").classList.toggle("hidden", tab!=="pending");
+// ── DELETE TASK (superuser) ──
+function askDelete(id, text){
+  deleteId = id;
+  document.getElementById("delete-task-text").textContent = text;
+  openModal("modal-delete");
 }
 
-document.addEventListener("click", e => {
-  const userBtn = e.target.closest("[data-user]");
-  if(userBtn){ setUser(userBtn.dataset.user, userBtn.dataset.change === "true"); return; }
+async function deleteTask(){
+  if(!deleteId) return;
+  const id = deleteId;
+  deleteId = null;
+  closeModal("modal-delete");
+  try {
+    await deleteDoc(doc(db,COL,id));
+  } catch(e){ showError("Error eliminant la tasca: "+e.message); }
+}
 
+// ── TABS ──
+function switchTab(tab){
+  ["pending","done","ranking"].forEach(t=>{
+    document.getElementById("tab-"+t).style.display = t===tab ? "flex" : "none";
+    document.getElementById("tbtn-"+t).classList.toggle("active", t===tab);
+  });
+  document.getElementById("topbar-title").textContent =
+    tab==="pending" ? "Tasques pendents" :
+    tab==="done"    ? "Registre de tasques" : "Rànquing";
+  document.getElementById("fab").classList.toggle("hidden", tab!=="pending");
+  if(tab==="ranking") renderRanking();
+}
+
+// ── EVENTS ──
+document.addEventListener("click", e => {
+  // Triar usuari
+  const userBtn = e.target.closest("[data-user]");
+  if(userBtn){ setUser(userBtn.dataset.user, userBtn.dataset.change==="true"); return; }
+
+  // Botó Fet ✓
   const doneBtn = e.target.closest(".done-btn");
   if(doneBtn){
-    confirmId = doneBtn.dataset.id;
-    document.getElementById("confirm-text").textContent =
-      doneBtn.closest(".task-card").querySelector(".task-text").textContent;
-    openModal("modal-confirm");
+    const text = doneBtn.closest(".task-card").querySelector(".task-text").textContent;
+    askDone(doneBtn.dataset.id, text);
     return;
   }
 
+  // Botó eliminar (superuser)
+  const delBtn = e.target.closest(".delete-btn");
+  if(delBtn){ askDelete(delBtn.dataset.deleteId, delBtn.dataset.deleteText); return; }
+
+  // Opcions de temps
+  const timeOpt = e.target.closest(".time-opt");
+  if(timeOpt){
+    document.querySelectorAll(".time-opt").forEach(b=>b.classList.remove("selected"));
+    timeOpt.classList.add("selected");
+    selectedMin = parseInt(timeOpt.dataset.min);
+    return;
+  }
+
+  // Tabs
   const tabBtn = e.target.closest("[data-tab]");
   if(tabBtn){ switchTab(tabBtn.dataset.tab); return; }
 
-  if(e.target.id === "fab"){
-    document.getElementById("new-task-text").value = "";
-    openModal("modal-add");
-    setTimeout(()=>document.getElementById("new-task-text").focus(), 200);
+  // Periode rànquing
+  const periodBtn = e.target.closest("[data-period]");
+  if(periodBtn){
+    rankPeriod = periodBtn.dataset.period;
+    document.querySelectorAll(".period-btn").forEach(b=>b.classList.remove("active"));
+    periodBtn.classList.add("active");
+    renderRanking();
     return;
   }
 
-  if(e.target.id === "user-badge"){ openModal("modal-user"); return; }
-  if(e.target.id === "btn-add-confirm")  { addTask(); return; }
-  if(e.target.id === "btn-add-cancel")   { closeModal("modal-add"); return; }
-  if(e.target.id === "btn-done-confirm") { completeDone(); return; }
-  if(e.target.id === "btn-done-cancel")  { closeModal("modal-confirm"); return; }
-  if(e.target.id === "btn-user-cancel")  { closeModal("modal-user"); return; }
+  // FAB
+  if(e.target.id==="fab"){
+    document.getElementById("new-task-text").value="";
+    openModal("modal-add");
+    setTimeout(()=>document.getElementById("new-task-text").focus(),200);
+    return;
+  }
+
+  // Badge usuari
+  if(e.target.id==="user-badge"){ openModal("modal-user"); return; }
+
+  // Botons de modals
+  if(e.target.id==="btn-add-confirm")    { addTask(); return; }
+  if(e.target.id==="btn-add-cancel")     { closeModal("modal-add"); return; }
+  if(e.target.id==="btn-time-confirm")   { completeDone(); return; }
+  if(e.target.id==="btn-time-cancel")    { closeModal("modal-time"); confirmId=null; return; }
+  if(e.target.id==="btn-delete-confirm") { deleteTask(); return; }
+  if(e.target.id==="btn-delete-cancel")  { closeModal("modal-delete"); deleteId=null; return; }
+  if(e.target.id==="btn-user-cancel")    { closeModal("modal-user"); return; }
   if(e.target.classList.contains("overlay")){ e.target.classList.remove("open"); return; }
 });
 
+// ── INIT ──
 (function init(){
   const saved = localStorage.getItem(USER_KEY);
   if(saved && ["M","J","L"].includes(saved)){
