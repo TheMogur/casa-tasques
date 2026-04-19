@@ -325,6 +325,8 @@ function renderPending(tasks){
 function renderDone(tasks){
   const list  = document.getElementById("done-list");
   const empty = document.getElementById("done-empty");
+  const cutoff = Date.now() - 30*24*60*60*1000;
+  tasks = tasks.filter(t => t.completedAt && t.completedAt.toDate().getTime() >= cutoff);
   if(!tasks.length){ list.innerHTML=""; empty.style.display="block"; return; }
   empty.style.display="none";
   list.innerHTML = tasks.map(t=>`
