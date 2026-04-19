@@ -298,15 +298,9 @@ function subscribePending(){
 
 function subscribeDone(){
   if(unsubDone) unsubDone();
-  const cutoff = Timestamp.fromDate(new Date(Date.now() - 30*24*60*60*1000));
   const q = query(collection(db, TASK_COL),
                   where("status","==","done"),
-                  where("completedAt",">=",cutoff),
                   orderBy("completedAt","desc"));
-  unsubDone = onSnapshot(q, snap=>{
-    const tasks = snap.docs.map(d=>({id:d.id,...d.data()}));
-    renderDone(tasks);
-  }, err=>{ showError("Error carregant registre: "+err.message); });
 }
 
 // ── RENDER ──
